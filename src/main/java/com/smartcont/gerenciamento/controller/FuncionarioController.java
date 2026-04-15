@@ -4,8 +4,15 @@
  */
 package com.smartcont.gerenciamento.controller;
 
+import com.smartcont.gerenciamento.model.FuncionarioDTO;
+import com.smartcont.gerenciamento.repository.FuncionarioDAO;
+import com.smartcont.gerenciamento.service.FuncionarioService;
+import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -14,8 +21,19 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class FuncionarioController {
     
+    @Autowired
+    private FuncionarioService service;
     @GetMapping("/funcionarios")
-    public String getFuncionarios() {
+    public String getFuncionarios(Model model) {
+        List<FuncionarioDTO> lista = service.lerTodos();
+        model.addAttribute("lista", lista);
         return "funcionarios";
+    }
+    
+    @GetMapping("/perfil")
+    public String abrirEdicao(@RequestParam int id, Model model) {
+        FuncionarioDTO f = service.lerPorID(id);
+        model.addAttribute("funcionario", f);
+        return "perfil";
     }
 }
