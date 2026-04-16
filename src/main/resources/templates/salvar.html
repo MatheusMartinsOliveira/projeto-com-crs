@@ -3,9 +3,9 @@
 Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
-<html xmlns:th="http://thymeleaf.org">
+<html>
     <head>
-        <title>Perfil</title>
+        <title>Adicionar Perfil</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
@@ -15,9 +15,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <a href="/funcionarios">Voltar</a>
             </nav>
         </header>
-        <main>
-            <h2>Editar Dados</h2>
-            <form th:action="@{/salvar}" th:object="${funcionario}" method="post">
+        <h2>Adicionar Dados</h2>
+            <form th:action="@{/adicionar}" th:object="${funcionario}" method="post">
                 <input type="hidden" th:field="*{id}" />
                 <label>Nome:</label>
                 <input type="text" th:field="*{nome}"/>
@@ -34,8 +33,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <label>Data de Contratação:</label>
                 <input type="date" th:field="*{dataContratacao}"/>
                 <br /><br />
-                <button type="submit">Salvar</button>
+                <button type="submit">Adicionar</button>
             </form>
-        </main>
+            
     </body>
 </html>

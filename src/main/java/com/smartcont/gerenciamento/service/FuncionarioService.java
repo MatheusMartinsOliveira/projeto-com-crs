@@ -28,4 +28,10 @@ public class FuncionarioService {
     public FuncionarioDTO lerPorID(@RequestParam int id) {
         return repository.lerPorID(id);
     }
+    public void editarFuncionario(FuncionarioDTO funcionario) {
+        repository.editarFuncionario(funcionario);
+    }
+    public void criarFuncionario(FuncionarioDTO funcionario){
+        repository.criarFuncionario(funcionario);
+    }
 }

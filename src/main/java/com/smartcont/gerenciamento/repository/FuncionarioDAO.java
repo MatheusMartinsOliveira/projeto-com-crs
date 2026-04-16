@@ -71,4 +71,40 @@ public class FuncionarioDAO {
             e.printStackTrace();
         }return funcionario;
     }
+    public void editarFuncionario(FuncionarioDTO funcionario){
+        try{
+            Connection conn = Conexao.conectar();
+            PreparedStatement stmt = null;
+  
+            
+            stmt = conn.prepareStatement("update funcionario set nome = ?, cargo = ?, departamento = ?, email = ?, data_contratacao = ? where id = ?");
+            stmt.setString(1, funcionario.getNome());
+            stmt.setString(2, funcionario.getCargo());
+            stmt.setString(3, funcionario.getDepartamento());
+            stmt.setString(4, funcionario.getEmail());
+            stmt.setDate(5, funcionario.getDataContratacao());
+            stmt.setInt(6, funcionario.getId());
+            stmt.executeUpdate();
+           
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
+            
+    }
+    public void criarFuncionario(FuncionarioDTO funcionario) {
+        try{
+        Connection conn = Conexao.conectar();
+        PreparedStatement stmt = null;
+        
+        stmt = conn.prepareStatement("insert into funcionario (nome, cargo, departamento, email, data_contratacao) values (?, ?, ?, ?, ?)");
+        stmt.setString(1, funcionario.getNome());
+        stmt.setString(2, funcionario.getCargo());
+        stmt.setString(3, funcionario.getDepartamento());
+        stmt.setString(4, funcionario.getEmail());
+        stmt.setDate(5, funcionario.getDataContratacao());
+        stmt.executeUpdate();
+        } catch(SQLException e){
+            e.printStackTrace();
+        }
+    }
 }

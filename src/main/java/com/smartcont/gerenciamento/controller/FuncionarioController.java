@@ -12,6 +12,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 /**
@@ -35,5 +37,16 @@ public class FuncionarioController {
         FuncionarioDTO f = service.lerPorID(id);
         model.addAttribute("funcionario", f);
         return "perfil";
+    }
+    
+    @PostMapping("/salvar")
+    public String salvar(@ModelAttribute FuncionarioDTO funcionario) {
+        service.editarFuncionario(funcionario);
+        return "redirect:/funcionarios";
+    }
+    @PostMapping("/adicionar")
+    public String adicionar(@ModelAttribute FuncionarioDTO funcionario) {
+        service.editarFuncionario(funcionario);
+        return "redirect:/funcionarios";
     }
 }
